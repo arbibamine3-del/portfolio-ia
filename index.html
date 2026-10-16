@@ -147,6 +147,16 @@
   }
   .big { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; }
 
+  /* Platform */
+  .pipe { display: grid; gap: .45rem; margin-bottom: .25rem; }
+  .node { display: flex; gap: .6rem; align-items: center; background: var(--bg); border-radius: .5rem; padding: .55rem .7rem; font-size: .88rem; line-height: 1.35; position: relative; }
+  .node + .node::before { content: ""; position: absolute; left: 3.1rem; top: -.45rem; height: .45rem; width: 2px; background: var(--line); }
+  .ty { flex: none; font-size: .72rem; font-weight: 700; padding: .12rem .45rem; border-radius: .3rem; min-width: 4.8rem; text-align: center; }
+  .ty.ag { background: var(--accent); color: var(--surface); }
+  .ty.mcp { background: var(--warm-soft); color: var(--warm); }
+  .ty.io { background: var(--surface); border: 1px solid var(--line); color: var(--muted); }
+  .visual h3.mt { margin-top: 1.4rem; }
+
   /* Ticket agent */
   .ticket { background: var(--bg); border-radius: .75rem; padding: 1rem; }
   .ticket .t-title { font-weight: 700; margin: 0 0 .4rem; font-size: .98rem; }
@@ -191,8 +201,9 @@
 <header class="hero">
   <div class="wrap">
     <h1>Ce que je construis avec l'IA</h1>
-    <p class="intro">Je suis <strong>Amine, Product Owner chez PerfectStay</strong>, une plateforme de réservation de voyages en marque blanche pour des compagnies aériennes. Voici sept réalisations concrètes : des agents IA mis à disposition de l'équipe via notre outil interne, un process repensé, et ma propre façon de travailler.</p>
+    <p class="intro">Je suis <strong>Amine, Product Owner chez PerfectStay</strong>, une plateforme de réservation de voyages en marque blanche pour des compagnies aériennes. Voici ce que j'ai construit : l'outil interne qui nous permet de créer et partager des agents, les agents que j'ai bâtis, un process repensé, et ma propre façon de travailler.</p>
     <ul class="index">
+      <li><a href="#plateforme">Plateforme d'agents</a></li>
       <li><a href="#avis">Discovery dans les avis</a></li>
       <li><a href="#conversion">Diagnostic de conversion</a></li>
       <li><a href="#dashboards">Dashboards automatiques</a></li>
@@ -206,20 +217,48 @@
 
 <main>
 
+  <!-- Plateforme -->
+  <section class="case" id="plateforme">
+    <div class="wrap case-grid">
+      <div>
+        <p class="tag">Outil interne · Fondation</p>
+        <h2>Un outil pour créer des agents, les partager et les connecter à nos outils</h2>
+        <dl class="story">
+          <div><dt>Le problème</dt><dd>L'usage de l'IA restait individuel : chacun ses prompts et ses essais, sans accès aux outils de l'entreprise ni partage entre équipes.</dd></div>
+          <div><dt>Ce que nous avons construit</dt><dd>Un outil interne qui permet de créer des agents, de les partager entre toutes les équipes et de les connecter à nos outils internes. Grâce au protocole MCP, on y assemble des workflows qui enchaînent plusieurs agents et des outils externes.</dd></div>
+          <div><dt>L'impact</dt><dd class="impact">L'IA devient une capacité d'équipe : un agent créé par une équipe profite à toutes, et chaque nouveau workflow réutilise les briques existantes au lieu de repartir de zéro.</dd></div>
+        </dl>
+      </div>
+      <div class="visual" aria-label="Exemple de workflow d'agents sur l'outil interne">
+        <h3>Exemple de workflow : diagnostic de conversion</h3>
+        <div class="pipe">
+          <div class="node"><span class="ty io">Déclencheur</span><span>Alerte de baisse de conversion</span></div>
+          <div class="node"><span class="ty mcp">MCP</span><span>GitHub, Redshift, CMS : collecte des données</span></div>
+          <div class="node"><span class="ty ag">3 agents</span><span>Analyse du code, de la data et du setup CMS</span></div>
+          <div class="node"><span class="ty ag">Agent</span><span>Synthèse et hypothèses classées</span></div>
+          <div class="node"><span class="ty io">Sortie</span><span>Rapport partagé avec l'équipe</span></div>
+        </div>
+        <h3 class="mt">Outils connectés via MCP</h3>
+        <div class="tools"><span>Jira</span><span>GitHub</span><span>Redshift</span><span>Datadog</span><span>Trustpilot</span><span>CMS</span></div>
+        <p class="feedback"><span class="dot"></span><span>Chaque agent créé est disponible pour toutes les équipes.</span></p>
+      </div>
+    </div>
+  </section>
+
   <!-- 1. Avis -->
   <section class="case" id="avis">
     <div class="wrap case-grid">
       <div>
-        <p class="tag">Agent IA · Discovery</p>
+        <p class="tag">2 agents IA · Discovery</p>
         <h2>Trouver ce qui bloque nos clients, directement dans leurs avis</h2>
         <dl class="story">
           <div><dt>Le problème</dt><dd>Des milliers d'avis clients, lus partiellement et à la main. Les irritants remontaient tard, sans priorisation claire.</dd></div>
-          <div><dt>Ce que j'ai construit</dt><dd>Un agent qui analyse les avis en continu, regroupe les points bloquants par thème, les quantifie et cite des verbatims représentatifs.</dd></div>
+          <div><dt>Ce que j'ai construit</dt><dd>Deux agents en chaîne : le premier collecte les avis en continu, le second les analyse, regroupe les points bloquants par thème, les quantifie et rédige un compte rendu avec les insights et des verbatims représentatifs.</dd></div>
           <div><dt>L'impact</dt><dd class="impact">Une discovery permanente plutôt que ponctuelle, et une roadmap qui s'appuie sur la voix du client.</dd></div>
         </dl>
       </div>
       <div class="visual" aria-label="Exemple fictif de sortie de l'agent d'analyse des avis">
-        <div class="flow"><span>Avis clients</span><i>›</i><span class="agent">Agent</span><i>›</i><span>Irritants classés</span></div>
+        <div class="flow"><span>Avis clients</span><i>›</i><span class="agent">Agent collecte</span><i>›</i><span class="agent">Agent insights</span><i>›</i><span>Compte rendu</span></div>
         <div class="quotes">
           <p>« Le prix a augmenté au moment de payer, à cause des bagages. »</p>
           <p>« Impossible de changer la date de mon vol en ligne. »</p>
@@ -239,15 +278,16 @@
   <section class="case" id="conversion">
     <div class="wrap case-grid">
       <div>
-        <p class="tag">Agent IA · Analyse</p>
+        <p class="tag">4 agents IA · Analyse</p>
         <h2>Expliquer une chute de conversion avant même d'ouvrir les logs</h2>
         <dl class="story">
           <div><dt>Le problème</dt><dd>Quand la conversion chute, l'enquête mobilise plusieurs devs pendant des heures : logs, mises en production récentes, segments à croiser.</dd></div>
-          <div><dt>Ce que j'ai construit</dt><dd>Un agent qui croise données de conversion, monitoring et historique des mises en production pour proposer des hypothèses classées, preuves à l'appui.</dd></div>
+          <div><dt>Ce que j'ai construit</dt><dd>Quatre agents qui se répartissent l'enquête : un analyse les dépôts de code et les mises en production, un deuxième la data de conversion, un troisième le paramétrage du CMS. Le dernier rassemble leurs résultats et les met en forme en hypothèses classées, preuves à l'appui.</dd></div>
           <div><dt>L'impact</dt><dd class="impact">Du temps de dev rendu au produit : l'équipe démarre l'investigation avec une piste concrète plutôt qu'une page blanche.</dd></div>
         </dl>
       </div>
       <div class="visual" aria-label="Exemple fictif de diagnostic de chute de conversion">
+        <div class="flow"><span class="agent">Agent code</span><i>+</i><span class="agent">Agent data</span><i>+</i><span class="agent">Agent setup CMS</span><i>›</i><span class="agent">Agent synthèse</span><i>›</i><span>Hypothèses</span></div>
         <h3>Taux de conversion sur 14 jours</h3>
         <svg class="chart" viewBox="0 0 300 165" role="img" aria-label="Courbe de conversion stable autour de 2,8 % puis chute à 1,9 % après une mise en production au jour 10">
           <line x1="20" y1="140" x2="280" y2="140" stroke="var(--line)" stroke-width="1"/>
@@ -266,7 +306,7 @@
         <div class="diag">
           <p class="rank">Hypothèse n°1 · confiance élevée</p>
           <p>La chute démarre avec la mise en production du J10 et se concentre sur mobile, navigateur Safari. Le taux d'erreur à l'étape paiement est multiplié par 4 sur ce segment.</p>
-          <div class="sources"><span>Données de conversion</span><span>Monitoring</span><span>Notes de MEP</span></div>
+          <div class="sources"><span>Dépôts de code</span><span>Data de conversion</span><span>Setup CMS</span></div>
         </div>
       </div>
     </div>
@@ -276,16 +316,16 @@
   <section class="case" id="dashboards">
     <div class="wrap case-grid">
       <div>
-        <p class="tag">Agent IA · Pilotage</p>
+        <p class="tag">2 agents IA · Pilotage</p>
         <h2>Un dashboard de suivi pour chaque nouvelle feature, dès le jour 1</h2>
         <dl class="story">
           <div><dt>Le problème</dt><dd>Les features partaient en production sans suivi standardisé. Mesurer leur adoption demandait une requête sur mesure à chaque fois.</dd></div>
-          <div><dt>Ce que j'ai construit</dt><dd>Un agent qui génère automatiquement le dashboard de suivi d'une feature à partir de sa description : KPIs, segments et comparaison avant / après.</dd></div>
+          <div><dt>Ce que j'ai construit</dt><dd>Deux agents : le premier analyse les données de la feature à partir de sa description (KPIs, segments, comparaison avant / après), le second les met en forme dans un dashboard et y ajoute sa propre lecture des résultats.</dd></div>
           <div><dt>L'impact</dt><dd class="impact">Chaque lancement est mesuré dès sa sortie, et les résultats sont lisibles par toute l'équipe, pas seulement par les profils data.</dd></div>
         </dl>
       </div>
       <div class="visual" aria-label="Exemple fictif de dashboard généré automatiquement">
-        <div class="flow"><span>Feature en prod</span><i>›</i><span class="agent">Agent</span><i>›</i><span>Dashboard partagé</span></div>
+        <div class="flow"><span>Feature en prod</span><i>›</i><span class="agent">Agent analyse</span><i>›</i><span class="agent">Agent restitution</span><i>›</i><span>Dashboard commenté</span></div>
         <h3>Feature « Filtre vols directs » · semaine 1</h3>
         <div class="kpis">
           <div class="kpi"><div class="v">18 %</div><div class="l">des visiteurs utilisent le filtre</div></div>
@@ -296,6 +336,7 @@
           <div style="height:35%"></div><div style="height:48%"></div><div style="height:52%"></div><div style="height:61%"></div><div style="height:66%"></div><div style="height:78%"></div><div class="hl" style="height:90%"></div>
         </div>
         <div class="mini-x"><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
+        <div class="diag"><p class="rank">Lecture de l'agent</p><p>Adoption en hausse chaque jour et conversion supérieure chez les utilisateurs du filtre. Effet à confirmer sur trois semaines avant d'élargir la mise en avant.</p></div>
       </div>
     </div>
   </section>
@@ -338,23 +379,23 @@
   <section class="case" id="tickets">
     <div class="wrap case-grid">
       <div>
-        <p class="tag">Agent IA · Spécification</p>
+        <p class="tag">1 agent IA · Spécification</p>
         <h2>Des tickets prêts pour le dev, critères d'acceptation compris</h2>
         <dl class="story">
           <div><dt>Le problème</dt><dd>Rédiger un ticket complet prend du temps, et ce sont souvent les critères d'acceptation qui manquent : cas limites oubliés, allers-retours avec les devs en plein sprint.</dd></div>
-          <div><dt>Ce que j'ai construit</dt><dd>Un système d'agents fait maison où chacun joue un rôle : cadrer le besoin, rédiger le ticket selon notre modèle, puis le relire pour traquer les cas limites. Il produit des critères d'acceptation testables, au format Étant donné / Quand / Alors.</dd></div>
+          <div><dt>Ce que j'ai construit</dt><dd>Un agent fait maison qui analyse la demande et la met en forme selon notre modèle de ticket, en tenant compte du contexte produit et technique. Il produit des critères d'acceptation testables, au format Étant donné / Quand / Alors, et fait ressortir les cas limites.</dd></div>
           <div><dt>L'impact</dt><dd class="impact">Des tickets plus homogènes et plus complets, moins de questions en cours de sprint, et une base directement réutilisable pour la recette.</dd></div>
         </dl>
       </div>
-      <div class="visual" aria-label="Exemple fictif de ticket rédigé par le système d'agents">
-        <div class="flow"><span>Besoin brut</span><i>›</i><span class="agent">Cadrage</span><i>›</i><span class="agent">Rédaction</span><i>›</i><span class="agent">Relecture</span><i>›</i><span>Ticket prêt</span></div>
+      <div class="visual" aria-label="Exemple fictif de ticket rédigé par l'agent">
+        <div class="flow"><span>Besoin brut</span><i>+</i><span>Contexte</span><i>›</i><span class="agent">Agent ticket</span><i>›</i><span>Ticket prêt</span></div>
         <div class="ticket">
           <p class="t-title">Afficher les bagages inclus dans la liste des offres</p>
           <p class="t-ctx">Contexte : 34 % des avis négatifs citent des frais de bagages découverts au moment du paiement.</p>
           <ul class="ac">
             <li><b>Étant donné</b> une offre avec bagage en soute inclus, <b>quand</b> l'utilisateur consulte la liste, <b>alors</b> un indicateur « Bagage inclus » s'affiche sur l'offre.</li>
             <li><b>Étant donné</b> une offre sans bagage inclus, <b>quand</b> l'utilisateur consulte la liste, <b>alors</b> le prix de l'option bagage est visible avant la sélection.</li>
-            <li class="edge"><span class="edge-label">Cas limite ajouté à la relecture</span><b>Étant donné</b> que le fournisseur ne renvoie pas l'information bagage, <b>alors</b> aucun indicateur n'est affiché et l'offre reste réservable.</li>
+            <li class="edge"><span class="edge-label">Cas limite identifié par l'agent</span><b>Étant donné</b> que le fournisseur ne renvoie pas l'information bagage, <b>alors</b> aucun indicateur n'est affiché et l'offre reste réservable.</li>
           </ul>
         </div>
       </div>
@@ -365,16 +406,16 @@
   <section class="case" id="qa">
     <div class="wrap case-grid">
       <div>
-        <p class="tag">Agent IA · Qualité</p>
-        <h2>Une recette rédigée et jouée par un agent, directement sur notre front</h2>
+        <p class="tag">2 agents IA · Qualité</p>
+        <h2>Une recette rédigée et jouée par des agents, directement sur notre front</h2>
         <dl class="story">
           <div><dt>Le problème</dt><dd>La recette arrivait en bout de chaîne, rédigée et jouée à la main. Faute de temps, elle restait souvent partielle.</dd></div>
-          <div><dt>Ce que j'ai construit</dt><dd>Un agent QA qui transforme les critères d'acceptation d'un ticket en cahier de recette, puis exécute les scénarios sur notre front et documente les anomalies trouvées.</dd></div>
+          <div><dt>Ce que j'ai construit</dt><dd>Deux agents QA : le premier transforme les critères d'acceptation d'un ticket en tâches de recette, le second les exécute sur notre front, met à jour le cahier de recette et documente les anomalies trouvées.</dd></div>
           <div><dt>L'impact</dt><dd class="impact">Une recette plus systématique et plus rapide, et des bugs remontés avec leurs étapes de reproduction avant la mise en production.</dd></div>
         </dl>
       </div>
       <div class="visual" aria-label="Exemple fictif de cahier de recette exécuté par l'agent QA">
-        <div class="flow"><span>Ticket</span><i>›</i><span class="agent">Agent QA</span><i>›</i><span>Cahier de recette</span><i>›</i><span>Tests sur le front</span></div>
+        <div class="flow"><span>Ticket</span><i>›</i><span class="agent">Agent rédaction</span><i>›</i><span class="agent">Agent exécution</span><i>›</i><span>Cahier de recette à jour</span></div>
         <h3>Recette · Bagages inclus dans la liste des offres</h3>
         <div class="tests">
           <div class="test"><span class="st ok">OK</span><span>Indicateur affiché sur une offre avec bagage inclus, desktop</span></div>
